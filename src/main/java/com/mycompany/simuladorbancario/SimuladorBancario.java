@@ -11,6 +11,8 @@ package com.mycompany.simuladorbancario;
 public class SimuladorBancario {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        menu mM = new menu();
+        
+        mM.mainMenu();
     }
 }
