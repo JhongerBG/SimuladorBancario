@@ -25,7 +25,7 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el nombre del titular: ");
         String nombre = sc.nextLine();
         
-        System.out.print("Ingrese el documento de identificación: ");
+        System.out.print("Ingrese el documento de identificacion: ");
         int documento = sc.nextInt();
         sc.nextLine(); // Limpiar el scanner
         
@@ -35,7 +35,9 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el numero de cuenta a asignar: ");
         int numCuenta = sc.nextInt();
         
-        double saldoInicial = 0;
+        double saldoInicial;
+        System.out.print("Ingrese el saldo inicial: ");
+        saldoInicial = sc.nextDouble();
         sc.nextLine(); // Limpiar el scanner
         
         CuentaAhorro nuevaCuentaAhorro = new CuentaAhorro(numCuenta, titular, saldoInicial);
@@ -53,7 +55,7 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el nombre del titular: ");
         String nombre = sc.nextLine();
         
-        System.out.print("Ingrese el documento de identificación: ");
+        System.out.print("Ingrese el documento de identificacion: ");
         int documento = sc.nextInt();
         sc.nextLine(); // Limpiar el scanner
         
@@ -63,7 +65,9 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el numero de cuenta a asignar: ");
         int numCuenta = sc.nextInt();
         
-        double saldoInicial = 0;
+        double saldoInicial;
+        System.out.print("Ingrese el saldo inicial: ");
+        saldoInicial = sc.nextDouble();
         sc.nextLine(); // Limpiar el scanner
         
         CuentaCorriente nuevaCuentaCorriente = new CuentaCorriente(numCuenta, titular, saldoInicial);
@@ -81,7 +85,7 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el nombre del titular: ");
         String nombre = sc.nextLine();
         
-        System.out.print("Ingrese el documento de identificación: ");
+        System.out.print("Ingrese el documento de identificacion: ");
         int documento = sc.nextInt();
         sc.nextLine(); // Limpiar el scanner
         
@@ -91,7 +95,9 @@ public class gestorDeCuentas {
         System.out.print("Ingrese el numero de cuenta a asignar: ");
         int numCuenta = sc.nextInt();
         
-        double saldoInicial = 0;
+        double saldoInicial;
+        System.out.print("Ingrese el saldo inicial: ");
+        saldoInicial = sc.nextDouble();
         sc.nextLine(); // Limpiar el scanner
         
         CuentaEmpresarial nuevaCuentaEmpresarial = new CuentaEmpresarial(numCuenta, titular, saldoInicial);
@@ -100,6 +106,61 @@ public class gestorDeCuentas {
         listaCuentas.add(nuevaCuentaEmpresarial);
         
         System.out.println("Cuenta de Corriente creada con exito para " + nombre + "!");
+    }
+    
+    public void DepositarYBuscarCuenta(){
+        
+        String tipoDeCuenta;
+        int numCuenta;
+        char menusel;
+        int indice;
+        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\n--------DEPOSITAR A UNA CUENTA--------\n");
+        System.out.println("a - Cuenta ahorro");
+        System.out.println("b - Cuenta corriente");
+        System.out.println("c - Cuenta empresarial");
+        System.out.print("\nIngresa el tipo de cuenta a la que desea depositar:\n>>");
+        menusel = sc.next().charAt(0);
+        
+        switch (menusel) {
+            case 'a':
+                tipoDeCuenta = "Ahorro";
+                break;
+            case 'b':
+                tipoDeCuenta = "Corriente";
+                break;
+            case 'c':
+                tipoDeCuenta = "Empresarial";
+                break;
+            default:
+                System.out.println("TIPO DE CUENTA NO VALIDA!!");
+                break;
+        }
+        
+        System.out.print("Ingrese el numero de la cuenta a la que desea depositar:\n>>");
+        numCuenta = sc.nextInt();
+        
+        for(int i=0;i < listaCuentas.size(); i++){
+            if(listaCuentas.get(i).getNumeroCuenta() == numCuenta){
+                indice = i;
+                char opc;
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                System.out.println("\n--------DEPOSITAR A UNA CUENTA--------\n");
+                System.out.println("Titular: " + listaCuentas.get(indice).getTitular().getNombreTitular());
+                System.out.println("Numero de cuenta: " + listaCuentas.get(indice).getNumeroCuenta() + "\n\n");
+                
+                System.out.print("Ingresa el monto que desea depositar: \n>>");
+                double monto = sc.nextDouble();
+                
+                System.out.println("Desea depositar $" + monto + "en esta cuenta(si|no)?");
+                opc = sc.next().toLowerCase().charAt(0);
+                
+                if(opc == 's'){
+                    listaCuentas.get(indice).depositar(monto);
+                }
+            }
+        }
     }
     
     public void consultarCuentasCreadas(){

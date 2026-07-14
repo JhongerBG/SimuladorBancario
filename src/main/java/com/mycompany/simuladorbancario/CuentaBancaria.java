@@ -14,6 +14,7 @@ public class CuentaBancaria {
     private String tipoCuenta;
     private boolean estado;
     private double saldo;
+    private double monto;
     
     public CuentaBancaria(int numeroCuenta, Persona titular, double saldoInicial, String tipoCuenta) {
         this.numeroCuenta = numeroCuenta;
@@ -45,7 +46,9 @@ public class CuentaBancaria {
     
     
     
-    public void depositar(){
+    public void depositar(double monto){
+        
+        saldo = saldo + monto;
         
     }
     

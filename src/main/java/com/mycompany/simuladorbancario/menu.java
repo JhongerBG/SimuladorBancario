@@ -28,6 +28,7 @@ public class menu {
             System.out.println("6 - Salir del sistema");
             System.out.print("\nIngresa la opcion que desea usar:\n>>");
             menu = sc.nextInt();
+            sc.nextLine();
             switch(menu){
                 case 1:
                     while(continuar == 's'){
@@ -37,13 +38,25 @@ public class menu {
                     }
                     continuar = 's';
                 break;
+                case 2:
+                    registrarDeposito();
+                break;
                 case 4:
                     consultarCuentas();
+                    System.out.print("Presiona ENTER para regresar al menu principal...");
+                    sc.nextLine();
+                break;
+                case 6:
+                break;
+                default:
+                    System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                    System.out.println("Opcion no valida!! Presiona ENTER para volver al menu principal");
+                    sc.nextLine();
                 break;
             }
         }while(menu != 6);
     }
-    
+    //1
     public void crearCuenta(){
         char menuCrear;
         
@@ -67,10 +80,18 @@ public class menu {
             case 'c':
                 gC.crearCuentaEmpresarial();
             break;
+            default:
+                System.out.println("Opcion no valida!!");
+            break;
         }
     }
     
+    //2
+    public void registrarDeposito(){
+        gC.DepositarYBuscarCuenta();
+    }
     
+    //4
     public void consultarCuentas(){
         gC.consultarCuentasCreadas();
     }
