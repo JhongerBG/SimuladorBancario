@@ -20,7 +20,7 @@ public class gestorDeCuentas {
     //DEBUG
     public void Debug(){
     Persona titular = new Persona("Johan", 22500293);
-    CuentaEmpresarial nuevaCuentaEmpresarial = new CuentaEmpresarial(13286767, titular, 200000);
+    CuentaEmpresarial nuevaCuentaEmpresarial = new CuentaEmpresarial(13286767, titular, 10200000);
         
     // 4. Guardar la cuenta en la lista
     listaCuentas.add(nuevaCuentaEmpresarial);
@@ -185,6 +185,8 @@ public class gestorDeCuentas {
                             case "Empresarial":
                                 if(monto >= 100000){
                                     listaCuentas.get(indice).depositar(monto);
+                                    CuentaEmpresarial cuentaE = (CuentaEmpresarial) listaCuentas.get(indice);
+                                    cuentaE.aplicarBono();
                                     System.out.println("Deposito realizado con exito!!");
                                     System.out.print("Presiona ENTER para regresar al menu principal...");
                                     sc.nextLine();
@@ -292,7 +294,7 @@ public class gestorDeCuentas {
                                 }
                             break;
                             case "Empresarial":
-                                CuentaCorriente cuentaE = (CuentaCorriente) listaCuentas.get(indice);
+                                CuentaEmpresarial cuentaE = (CuentaEmpresarial) listaCuentas.get(indice);
                                 if(cuentaE.confirmarRetiro(monto) == true){
                                     listaCuentas.get(indice).retirarMonto(monto);
                                     System.out.println("Retiro realizado con exito!!");
@@ -385,7 +387,7 @@ public class gestorDeCuentas {
                 System.out.println("Numero de Cuenta: " + cuenta.getNumeroCuenta() +
                                    " | Titular: " + cuenta.getTitular().getNombreTitular() + // Accedes a la Persona y luego a su nombre
                                    " | Tipo: " + cuenta.getTipoCuenta() +
-                                   " | Saldo: $" + cuenta.getSaldo() +
+                                   " | Saldo: $" + String.format("%.2f", cuenta.getSaldo()) +
                                    " | Estado: " + (cuenta.getEstado() ? "Activa" : "Inactiva"));
             }
         }
