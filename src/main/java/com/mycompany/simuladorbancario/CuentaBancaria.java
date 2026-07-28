@@ -8,12 +8,12 @@ package com.mycompany.simuladorbancario;
  *
  * @author ALUMNO
  */
-public class CuentaBancaria {
+public abstract class CuentaBancaria {
     private Persona titular;
     private int numeroCuenta;
     private String tipoCuenta;
     private boolean estado;
-    private double saldo;
+    protected double saldo;
     private double monto;
     
     public CuentaBancaria(int numeroCuenta, Persona titular, double saldoInicial, String tipoCuenta) {
@@ -32,7 +32,7 @@ public class CuentaBancaria {
         return tipoCuenta;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -56,15 +56,17 @@ public class CuentaBancaria {
         return saldo;
     }
     
-    public void retirarMonto(){
+    public void retirarMonto(double monto){
     
     }
+    
+    public abstract boolean confirmarRetiro(double monto);
     
     public void modificarDatos(){
     
     }
     
     public void cerrarCuenta(){
-    
+        estado = false;
     }
 }

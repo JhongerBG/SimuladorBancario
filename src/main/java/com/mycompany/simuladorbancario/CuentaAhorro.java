@@ -19,8 +19,24 @@ public class CuentaAhorro extends CuentaBancaria {
     }
     
     @Override
-    public void retirarMonto(){
+    public void retirarMonto(double monto){
+        if(retirosMesMax > 0){
+            retirosMesMax = retirosMesMax - 1;
+            saldo = saldo - monto;
+        }else{
+            System.out.println("Limite del mes alcanzado se le ha cobrado una comision del 2% equivalente a: " + (monto * 0.02));
+            saldo = saldo - (monto + (monto * 0.02));
+        }
+    }
     
+    @Override
+    public boolean confirmarRetiro(double monto){
+        if ((saldo - monto) < 20000 ){
+            return false;
+        }else
+        {
+            return true;
+        }
     }
     
     public void calcularBono(){

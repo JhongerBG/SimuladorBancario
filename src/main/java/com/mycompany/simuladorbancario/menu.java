@@ -17,6 +17,9 @@ public class menu {
     public void mainMenu(){
         int menu;
         char continuar = 's';
+        //DEBUG
+        gC.Debug();
+        //FIN DEBUG
         do{
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("\n----------SIMULADOR BANCARIO----------\n");
@@ -41,10 +44,14 @@ public class menu {
                 case 2:
                     registrarDeposito();
                 break;
+                case 3:
+                    registrarRetiro();
+                break;
                 case 4:
                     consultarCuentas();
-                    System.out.print("Presiona ENTER para regresar al menu principal...");
-                    sc.nextLine();
+                break;
+                case 5:
+                    cerrarCuentas();
                 break;
                 case 6:
                 break;
@@ -91,8 +98,20 @@ public class menu {
         gC.DepositarYBuscarCuenta();
     }
     
+    //3
+    public void registrarRetiro(){
+        gC.RetirarYBuscarCuenta();
+    }
+    
     //4
     public void consultarCuentas(){
         gC.consultarCuentasCreadas();
+        System.out.print("Presiona ENTER para regresar al menu principal...");
+        sc.nextLine();
+    }
+    
+    //5
+    public void cerrarCuentas(){
+        gC.CerrarCuenta();
     }
 }
